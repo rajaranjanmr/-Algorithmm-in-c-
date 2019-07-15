@@ -1,0 +1,46 @@
+
+//to print a unique number.In this given problem , there is occurrance of each element in a given array is twice except 
+//two number .we have to find that number 
+
+//using bitmasking technique
+//xored all values
+
+#include<iostream>
+using namespace std;
+int main() {
+	int a[10000],i,j,n,secondNo=0,mask, firstNo=0,res,temp;
+	cin>>n;
+
+	for(i=0;i<n;i++)
+	cin>>a[i];
+	
+	for(i=0;i<n;i++)
+	res=(res^a[i]);
+
+	temp=res;
+	i=0;
+
+	while(temp>0)
+	{
+		if((temp&1)!=0)
+		break;
+		i++;
+		temp=(temp>>1);
+
+	}
+//creating mask of final xored value of all  elements.
+ mask=(1<<i);
+
+for(i=0;i<n;i++)
+{
+	if((a[i] & mask))
+	firstNo = (firstNo^a[i]);
+	else
+	secondNo=(secondNo^a[i]);
+}
+	cout<<firstNo<<endl;
+
+	cout<<secondNo<<endl;
+	
+return 0;
+}
